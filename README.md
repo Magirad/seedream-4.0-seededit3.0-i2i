@@ -62,11 +62,11 @@ The image is also automatically saved on the server inside the downloads/seedrea
 The project is organized into the following files and directories:
 
 .
-├── app.py              # The Flask backend server logic.
-├── requirements.txt    # Lists the Python dependencies for the project.
-├── README.md           # This file.
+├── app.py              
+├── requirements.txt    
+├── README.md           
 ├── static/
-│   ├── script.js       # Frontend JavaScript for interactivity and API calls.
-│   └── style.css       # All CSS styling for the application.
+│   ├── script.js       
+│   └── style.css       
 └── templates/
     └── index.html 
