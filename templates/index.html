@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bytedance Image Generation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/darkly/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dark-theme">
+    <div class="container-fluid">
+        <h1 class="my-4 text-center">Bytedance Image Generation GUI</h1>
+
+        <!-- API Configuration Section -->
+        <div class="api-config-section card bg-secondary mb-4">
+            <div class="card-body">
+                <h5 class="card-title">API & Model Configuration</h5>
+                
+                <!-- API Key Management -->
+                <div class="form-group">
+                    <label>API Key</label>
+                    <div class="input-group mb-2">
+                        <select class="form-control" id="api-key-select">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" type="button" id="remove-key-btn">Remove Selected</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="api-key-input" placeholder="Enter new API Key to save">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="save-key-btn">Save New</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Endpoint Management -->
+                <div class="form-group">
+                    <label>API Endpoint URL</label>
+                    <div class="input-group mb-2">
+                        <select class="form-control" id="api-endpoint-select">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" type="button" id="remove-endpoint-btn">Remove Selected</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="api-endpoint-input" placeholder="Enter new API endpoint URL">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="save-endpoint-btn">Save New</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Model ID Management -->
+                <div class="form-group mb-0">
+                    <label>Model ID</label>
+                    <div class="input-group mb-2">
+                        <select class="form-control" id="model-id-select">
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-danger" type="button" id="remove-model-btn">Remove Selected</button>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="model-id-input" placeholder="Enter new Model ID">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="save-model-btn">Save New</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- End API Configuration Section -->
+
+        <!-- Start Combine Section Content -->
+        <div class="row">
+            <!-- Left column for controls -->
+            <div class="col-md-6">
+                <h3 class="mt-3">Combine Images</h3>
+                <form id="combine-form">
+                    <div class="form-group">
+                        <label for="combine-positive-prompt">Positive Prompt</label>
+                        <textarea class="form-control positive-prompt" id="combine-positive-prompt" rows="3" placeholder="e.g., 'Place the person from image 1 into the landscape from image 2, using the art style of image 3.'"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="combine-negative-prompt">Negative Prompt (Optional)</label>
+                        <textarea class="form-control negative-prompt" id="combine-negative-prompt" rows="2" placeholder="What to avoid... e.g., 'blurry, text, watermark, extra limbs'"></textarea>
+                    </div>
+                    
+                    <div class="shared-seed-option" style="display: none;">
+                        <div class="form-group">
+                            <label for="combine-seed">Seed</label>
+                            <input type="number" class="form-control seed-input" id="combine-seed" value="-1">
+                        </div>
+                    </div>
+        
+                    <div class="seededit-specific-options" style="display: none;">
+                        <div class="form-group">
+                            <label for="combine-guidance">Guidance Scale</label>
+                            <input type="number" step="0.1" class="form-control guidance-input" id="combine-guidance" value="5.5">
+                        </div>
+                    </div>
+        
+                    <div class="seedream-options" style="display: none;">
+                        <div class="form-group">
+                            <label for="combine-sequential-gen">Batch Generation</label>
+                            <select class="form-control sequential-gen-select" id="combine-sequential-gen">
+                                <option value="disabled" selected>Disabled</option>
+                                <option value="auto">Auto</option>
+                            </select>
+                        </div>
+                        <div class="form-group max-images-container" style="display: none;">
+                            <label for="combine-max-images">Max Images (<span class="max-images-value text-light">1</span>)</label>
+                            <input type="range" class="form-control-range max-images-input" id="combine-max-images" min="1" max="15" value="1">
+                        </div>
+                        <div class="form-group form-check">
+                            <input type="checkbox" class="form-check-input stream-checkbox" id="combine-stream">
+                            <label class="form-check-label" for="combine-stream">Enable Stream</label>
+                        </div>
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="combine-size">Image Size</label>
+                        <select class="form-control image-size-selector" id="combine-size"></select>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input watermark-checkbox" id="combine-watermark" checked>
+                        <label class="form-check-label" for="combine-watermark">Enable AI Watermark</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Combine</button>
+                </form>
+            </div>
+            <!-- Right column for visuals -->
+            <div class="col-md-6">
+                <div class="right-column-wrapper">
+                    <h3 class="mt-3">Reference Images</h3>
+                    <div id="combine-reference-container" class="reference-container">
+                        <!-- JS will populate this with thumbnails and the upload box -->
+                    </div>
+                    <!-- The file input is now SAFELY outside the container -->
+                    <input type="file" id="combine-images" multiple hidden>
+                    
+                    <div class="output-title">Output</div>
+                    <div id="combine-result" class="result-container">
+                        <div class="placeholder-text">Your combined image will appear here.</div>
+                    </div>
+                    <div id="combine-download-container" class="download-container mt-2"></div>
+                </div>
+            </div>
+        </div>
+        <!-- End Combine Section Content -->
+
+        <div id="live-info-panel" class="mt-4">
+            <h5 class="text-light">Live Log</h5>
+            <div id="live-info-log" class="bg-dark p-3 rounded"><p class="log-info">Waiting for a task to start...</p></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

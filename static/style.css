@@ -1,0 +1,169 @@
+/* --- NEW MODERN DARK THEME --- */
+
+/* Overall Page Style */
+body.dark-theme {
+    background-color: #111827; /* Dark navy background */
+    color: #D1D5DB; /* Light gray text */
+}
+
+/* API Configuration Section */
+.api-config-section {
+    background-color: #1F2937 !important; /* Slightly lighter component background */
+    border: 1px solid #374151;
+}
+
+/* All text inputs, textareas, and dropdowns */
+.form-control {
+    background-color: #111827 !important;
+    color: #D1D5DB !important;
+    border: 1px solid #374151 !important;
+}
+.form-control:focus {
+    border-color: #4F46E5 !important;
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.25) !important;
+}
+
+/* Main Generate Button Style */
+.btn-primary {
+    background-color: #4F46E5 !important; /* Vibrant blue */
+    border-color: #4F46E5 !important;
+    font-weight: bold;
+    width: 100%; /* Make button full-width */
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+.btn-primary:hover {
+    background-color: #4338CA !important; /* Slightly darker blue on hover */
+    border-color: #4338CA !important;
+}
+
+/* Right-hand Column Structure */
+.right-column-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 90vh;
+}
+
+/* This is the main container for both thumbnails and the upload box */
+.reference-container {
+    background-color: #1F2937;
+    border: 1px solid #374151;
+    min-height: 150px; /* Increased height */
+    padding: 0.75rem;
+    border-radius: 0.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start; /* Align items to the top */
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+/* --- NEW: The main drag-and-drop box --- */
+.upload-area {
+    border: 2px dashed #4B5563;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    text-align: center;
+    color: #9CA3AF;
+    cursor: pointer;
+    width: 120px; /* Fixed width */
+    height: 120px; /* Fixed height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+}
+.upload-area:hover, .upload-area.dragover {
+    background-color: #374151;
+    border-color: #6B7280;
+}
+
+.upload-icon {
+    font-size: 2rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+/* --- UPDATED: Thumbnail styles to look like filled upload boxes --- */
+.thumb-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 1px solid #374151;
+    border-radius: 0.25rem;
+    overflow: hidden; /* Hide parts of image that don't fit */
+}
+
+.reference-container .thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the area, cropping if needed */
+}
+
+.remove-thumb {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    font-size: 14px;
+    border: 1px solid white;
+}
+
+/* --- UPDATED OUTPUT SECTION STYLING --- */
+.output-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+}
+
+.result-container {
+    background-color: #1F2937;
+    border: 1px solid #374151;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; 
+    min-height: 0; 
+}
+
+.placeholder-text {
+    color: #6B7280; /* Muted gray for placeholder */
+    font-size: 1.1rem;
+}
+
+.result-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 0.25rem;
+}
+
+/* --- Other Unchanged Styles --- */
+.download-container { display: flex; justify-content: center; flex-shrink: 0; }
+#live-info-panel { margin-top: 1.5rem; }
+.spinner-border { color: #4F46E5; }
+#live-info-log { background-color: #1F2937; border: 1px solid #374151; }
+.log-info { color: #9CA3AF; }
+.log-success { color: #10B981; }
+.log-error { color: #EF4444; }
+.log-warn { color: #F59E0B; }
+.thumb-wrapper { position: relative; display: inline-block; }
+.reference-container .thumb { height: 100px; width: 100px; object-fit: cover; border-radius: 0.25rem; border: 2px solid #374151; }
+.remove-thumb { position: absolute; top: -5px; right: -5px; background-color: #EF4444; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; font-weight: bold; cursor: pointer; line-height: 1; font-family: 'Courier New', Courier, monospace; border: 1px solid #111827; }
