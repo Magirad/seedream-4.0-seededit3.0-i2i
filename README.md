@@ -6,7 +6,7 @@ The interface is built with Flask for the backend and standard HTML, CSS, and Ja
 
 - **Sleek, Modern UI**: A dark-themed, single-page interface designed for ease of use.
 - **Persistent Configuration**: Your API keys, endpoints, and model IDs are saved in the browser's local storage, so you don't have to enter them every time.
-- **Dynamic UI**: The interface intelligently shows and hides options based on the selected model (`seedream` vs. `seededit`).
+- **Dynamic UI**: The interface intelligently shows and hides options based on the selected model (`seedream 4.0` vs. `seededit 3 i2i`).
 - **Image Uploads**: Supports drag-and-drop and click-to-upload for reference images.
 - **Live Logging**: A real-time log panel shows the status of your API requests, from submission to success or failure.
 - **Auto-Save**: Generated images are automatically saved to a `downloads` folder on the server for your convenience.
