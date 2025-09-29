@@ -61,12 +61,11 @@ The image is also automatically saved on the server inside the downloads/seedrea
 
 The project is organized into the following files and directories:
 
-.
-├── app.py              
-├── requirements.txt    
-├── README.md           
+├── app.py
+├── requirements.txt
+├── README.md
 ├── static/
-│   ├── script.js       
-│   └── style.css       
+│   ├── script.js
+│   └── style.css
 └── templates/
-    └── index.html 
+    └── index.html
